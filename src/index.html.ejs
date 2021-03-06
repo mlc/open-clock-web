@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <title>open-clock-web demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <% stylesheets.forEach(stylesheet => { %>
+        <link href="/<%= stylesheet %>" rel="stylesheet">
+    <% }) %>
+</head>
+<body>
+    <div id="app"></div>
+    <% javascripts.forEach(javascript => { %>
+        <script src="<%= javascript %>" type="module"></script>
+    <% }) %>
+</body>
