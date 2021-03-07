@@ -1,0 +1,96 @@
+{
+  "definitions": {
+    "ClockStandard": {
+      "properties": {
+        "version": {
+          "type": "string",
+          "metadata": {
+            "description": "always 1.0",
+            "typescriptType": "'1.0'"
+          }
+        },
+        "title": {
+          "type": "string"
+        },
+        "layers": {
+          "elements": {
+            "ref": "ClockLayer"
+          }
+        }
+      }
+    },
+    "ClockLayer": {
+      "properties": {
+        "type": {
+          "enum": [
+            "dateTime",
+            "text",
+            "icon",
+            "dataLabel",
+            "image",
+            "hand",
+            "dataBar",
+            "dataRing",
+            "batteryIndicator"
+          ]
+        },
+        "zIndex": {
+          "type": "int32",
+          "metadata": { "description": "0 is bottom higher is top. layering" }
+        },
+        "customName": {
+          "type": "string",
+          "metadata": {
+            "description": "each layer can have user generated names or empty"
+          }
+        },
+        "imageFilename": {
+          "type": "string",
+          "metadata": {
+            "description": "filenames for images used in the layer"
+          }
+        },
+        "fillColor": {
+          "type": "string",
+          "metadata": {
+            "description": "fill color ( re used for public various types )"
+          }
+        },
+        "alpha": {
+          "type": "string",
+          "metadata": { "description": "transparency" }
+        },
+        "horizontalPosition": {
+          "type": "string",
+          "metadata": { "description": "0 is center : negative left" }
+        },
+        "verticalPosition": {
+          "type": "string",
+          "metadata": { "description": "0 is center : negative up" }
+        },
+        "scale": {
+          "type": "string",
+          "metadata": { "description": "1.0 is normal" }
+        },
+        "angleOffset": {
+          "type": "string",
+          "metadata": { "description": "rotation of the overall layer" }
+        },
+        "isHidden": {
+          "type": "boolean",
+          "metadata": { "description": "hide this layer" }
+        }
+      }
+    }
+  },
+  "properties": {
+    "clockStandard": {
+      "ref": "ClockStandard"
+    },
+    "images": {
+      "values": {
+        "type": "string"
+      }
+    }
+  }
+}

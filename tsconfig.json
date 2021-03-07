@@ -5,7 +5,9 @@
     "sourceMap": true,
     "jsx": "preserve",
     "noEmit": true,
-    "strict": true
+    "strict": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"]

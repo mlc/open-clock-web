@@ -1,6 +1,7 @@
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import emitEJS from 'rollup-plugin-emit-ejs';
+import json from '@rollup/plugin-json';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import replace from '@rollup/plugin-replace';
@@ -15,10 +16,12 @@ const postCssPlugins = [postcssEnv];
 
 const plugins = [
   replace({
+    preventAssignment: true,
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
   nodeResolve({ extensions }),
   commonjs(),
+  json(),
   babel({
     extensions,
     babelHelpers: 'runtime',
@@ -40,7 +43,7 @@ if (DEV) {
     })
   );
 } else {
-  plugins.push(htmlMinifier({ collapseWhitespace: true }), terser());
+  plugins.push(terser());
 }
 
 export default {

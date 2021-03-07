@@ -8,11 +8,11 @@
   "scripts": {
     "build": "NODE_ENV=production rollup --config",
     "dev": "NODE_ENV=development rollup --config --watch --watch.buildDelay 2",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "gen-schema": "jtd-codegen schemas/ClockWrapper.jtd.json --typescript-out src/open-clock"
   },
   "dependencies": {
     "@babel/runtime": "^7.13.9",
-    "@types/react-dom": "^17.0.1",
     "ajv": "^7.1.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
@@ -25,9 +25,11 @@
     "@babel/preset-typescript": "^7.13.0",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "@rollup/plugin-replace": "^2.4.1",
     "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "eslint": "^7.21.0",
@@ -64,6 +66,7 @@
     "cover 95% in US",
     "not IE 11",
     "not dead",
-    "firefox ESR"
+    "firefox ESR",
+    "not android < 5"
   ]
 }
