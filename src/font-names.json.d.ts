@@ -1,6 +1,6 @@
 interface FontDescriptor {
   path: string;
-  type: 'ttf' | 'otf';
+  type: 'truetype' | 'opentype';
 }
 
 declare const fontNames: { [family: string]: FontDescriptor };

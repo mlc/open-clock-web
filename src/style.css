@@ -1,0 +1,15 @@
+.hidden {
+  display: none;
+}
+
+#jsonForm {
+  width: 100%;
+  max-width: 400px;
+}
+
+#jsonEntry {
+  width: 100%;
+  height: 150px;
+  font-family: monospace;
+  resize: vertical;
+}

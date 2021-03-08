@@ -3,7 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import emitEJS from 'rollup-plugin-emit-ejs';
 import json from '@rollup/plugin-json';
 import nodeResolve from '@rollup/plugin-node-resolve';
-import postcss from 'rollup-plugin-postcss';
+import postcss from 'rollup-plugin-postcss-modules';
 import replace from '@rollup/plugin-replace';
 import serve from 'rollup-plugin-serve';
 import sizes from 'rollup-plugin-sizes';
@@ -27,8 +27,8 @@ const plugins = [
     babelHelpers: 'runtime',
   }),
   postcss({
-    modules: true,
     extract: true,
+    writeDefinitions: true,
     plugins: postCssPlugins,
   }),
   emitEJS({ src: 'src' }),
