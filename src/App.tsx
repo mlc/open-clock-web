@@ -1,5 +1,6 @@
 import * as React from 'react';
 import parser, { ParseResult } from './parser';
+import { TimeProvider } from './TimeContext';
 
 const getMessage = (r: ParseResult): string => {
   if ('errors' in r) {
@@ -15,22 +16,24 @@ const App: React.FunctionComponent = () => {
   const [json, setJson] = React.useState('');
   const parseResult = React.useMemo(() => parser(json), [json]);
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = React.useCallback(
-    (e) => setJson(e.target.value),
+    ({ target: { value } }) => setJson(value),
     [setJson]
   );
 
   const message = getMessage(parseResult);
 
   return (
-    <div>
-      <label>
-        Clock JSON:
-        <br />
-        <textarea onChange={onChange} id="json" value={json} />
-      </label>
+    <TimeProvider>
+      <div>
+        <label>
+          Clock JSON:
+          <br />
+          <textarea onChange={onChange} id="json" value={json} />
+        </label>
 
-      <p>{message}</p>
-    </div>
+        <p style={{ fontFamily: '"TwoFiftySixBytes-Regular"' }}>{message}</p>
+      </div>
+    </TimeProvider>
   );
 };
 

@@ -38,7 +38,7 @@ const plugins = [
 if (DEV) {
   plugins.push(
     serve({
-      contentBase: ['dist'],
+      contentBase: ['dist', 'fonts'],
       open: true,
     })
   );

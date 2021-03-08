@@ -2,7 +2,13 @@
 
 export interface ClockWrapper {
   clockStandard: ClockStandard;
-  images: { [key: string]: string };
+  images: ClockImage[];
+}
+
+export interface ClockImage {
+  filename: string;
+  hasTransparency: 'true' | 'false';
+  imageData: string;
 }
 
 export enum ClockLayerType {
@@ -68,6 +74,97 @@ export interface ClockLayer {
    * 0 is bottom higher is top. layering
    */
   zIndex: number;
+  dataBarOptions?: any;
+  dataLabelOptions?: any;
+  dataRingOptions?: any;
+  handOptions?: any;
+  iconOptions?: any;
+  textOptions?: ClockLayerTextOptions;
+  weatherOptions?: any;
+}
+
+export enum ClockLayerTextCasing {
+  Lower = 'lower',
+  None = 'none',
+  Sentence = 'sentence',
+  Uppercased = 'uppercased',
+  Word = 'word',
+}
+
+export enum ClockLayerTextJustification {
+  Centered = 'centered',
+  Left = 'left',
+  Right = 'right',
+}
+
+export enum ClockLayerTextOptionsDateTimeFormat {
+  City = 'City',
+  Colon = 'Colon',
+  Country = 'Country',
+  Da = 'DA',
+  Dadd = 'DADD',
+  Dd = 'DD',
+  Ddauto = 'DDAuto',
+  Ddmm = 'DDMM',
+  Dl = 'DL',
+  Dw = 'DW',
+  Dy = 'DY',
+  Hh = 'HH',
+  Hhmm = 'HHMM',
+  Hhmmpm = 'HHMMPM',
+  Hhmmss = 'HHMMSS',
+  HourWord = 'HourWord',
+  HourWordUnit = 'HourWordUnit',
+  Ml = 'ML',
+  Mm = 'MM',
+  Mmdd = 'MMDD',
+  Mn = 'MN',
+  Mo = 'MO',
+  MinuteWord = 'MinuteWord',
+  MinuteWordUnit = 'MinuteWordUnit',
+  Pm = 'PM',
+  Ss = 'SS',
+  SecondsWord = 'SecondsWord',
+  SecondsWordUnit = 'SecondsWordUnit',
+  Slash = 'Slash',
+  Wy = 'WY',
+  Yy = 'YY',
+  Yyyy = 'YYYY',
+}
+
+export interface ClockLayerTextOptions {
+  casingType: ClockLayerTextCasing;
+
+  /**
+   * designer entered text to show in label
+   */
+  customText: string;
+  dateTimeFormat: ClockLayerTextOptionsDateTimeFormat;
+  dateTimeFormatDescription: string;
+
+  /**
+   * will be specific to platforms, might want to ignore
+   */
+  effectType: string;
+  fontDescription: string;
+  fontFilename: string;
+  justification: ClockLayerTextJustification;
+
+  /**
+   * added as adv option, probably ignore
+   */
+  kerning: string;
+
+  /**
+   * color for outline
+   */
+  outlineColor: string;
+
+  /**
+   * pixels to show as outline on the text
+   */
+  outlineWidth: string;
+  fontFamily?: string;
 }
 
 export interface ClockStandard {

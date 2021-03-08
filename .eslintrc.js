@@ -10,5 +10,6 @@ module.exports = {
     'no-else-return': 'off',
     'react/prop-types': 'off',
     'jsx-a11y/label-has-associated-control': 'off', // seems to be buggy?
+    'import/prefer-default-export': 'off',
   },
 };

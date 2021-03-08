@@ -1,5 +1,21 @@
 {
   "definitions": {
+    "ClockImage": {
+      "properties": {
+        "hasTransparency": {
+          "type": "string",
+          "metadata": {
+            "typescriptType": "'true' | 'false'"
+          }
+        },
+        "filename": {
+          "type": "string"
+        },
+        "imageData": {
+          "type": "string"
+        }
+      }
+    },
     "ClockStandard": {
       "properties": {
         "version": {
@@ -80,7 +96,95 @@
           "type": "boolean",
           "metadata": { "description": "hide this layer" }
         }
+      },
+      "optionalProperties": {
+        "textOptions": { "ref": "ClockLayerTextOptions" },
+        "iconOptions": {},
+        "dataLabelOptions": {},
+        "weatherOptions": {},
+        "handOptions": {},
+        "dataBarOptions": {},
+        "dataRingOptions": {}
       }
+    },
+    "ClockLayerTextOptions": {
+      "properties": {
+        "casingType": { "ref": "ClockLayerTextCasing" },
+        "fontFilename": { "type": "string" },
+        "fontDescription": { "type": "string" },
+        "dateTimeFormat": {
+          "enum": [
+            "HHMMSS",
+            "HHMM",
+            "HHMMPM",
+            "HH",
+            "MM",
+            "SS",
+            "PM",
+            "DADD",
+            "DDMM",
+            "MMDD",
+            "MO",
+            "ML",
+            "MN",
+            "DA",
+            "DD",
+            "DDAuto",
+            "DL",
+            "DY",
+            "DW",
+            "WY",
+            "YY",
+            "YYYY",
+            "Colon",
+            "Slash",
+            "City",
+            "Country",
+            "HourWord",
+            "MinuteWord",
+            "SecondsWord",
+            "HourWordUnit",
+            "MinuteWordUnit",
+            "SecondsWordUnit"
+          ]
+        },
+        "dateTimeFormatDescription": { "type": "string" },
+        "customText": {
+          "type": "string",
+          "metadata": {
+            "description": "designer entered text to show in label"
+          }
+        },
+        "justification": { "ref": "ClockLayerTextJustification" },
+        "effectType": {
+          "type": "string",
+          "metadata": {
+            "description": "will be specific to platforms, might want to ignore"
+          }
+        },
+        "outlineWidth": {
+          "type": "string",
+          "metadata": { "description": "pixels to show as outline on the text" }
+        },
+        "outlineColor": {
+          "type": "string",
+          "metadata": { "description": "color for outline" }
+        },
+        "kerning": {
+          "type": "string",
+          "metadata": { "description": "added as adv option, probably ignore" }
+        }
+      },
+      "optionalProperties": {
+        "fontFamily": { "type": "string" }
+      }
+    },
+    "ClockLayerTextJustification": {
+      "enum": ["left", "centered", "right"]
+    },
+
+    "ClockLayerTextCasing": {
+      "enum": ["none", "lower", "sentence", "uppercased", "word"]
     }
   },
   "properties": {
@@ -88,8 +192,8 @@
       "ref": "ClockStandard"
     },
     "images": {
-      "values": {
-        "type": "string"
+      "elements": {
+        "ref": "ClockImage"
       }
     }
   }
