@@ -12,6 +12,7 @@ To get the dependencies:
 1. Clone the repo.
 1. do `yarn install`
 1. install [jtd-codegen][] if you will be modifying any schemas
+1. obtain the fonts, and put them into a directory called `fonts` under the root of the repo. rename `PIXEL_MILLENNIUM.TFF` to `PIXEL_MILLENNIUM.TTF`
 
 Now, the following commands are available to you:
 
