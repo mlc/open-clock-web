@@ -125,7 +125,7 @@
 }
 @font-face {
   font-family: 'PixelMillennium';
-  src: url('PIXEL_MILLENNIUM.TFF') format('undefined');
+  src: url('PIXEL_MILLENNIUM.TTF') format('truetype');
 }
 @font-face {
   font-family: 'QuatreQuarts';

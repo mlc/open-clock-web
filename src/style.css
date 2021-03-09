@@ -2,9 +2,14 @@
   display: none;
 }
 
+.error {
+  color: red;
+}
+
 #jsonForm {
   width: 100%;
   max-width: 400px;
+  margin-bottom: 2em;
 }
 
 #jsonEntry {

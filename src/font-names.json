@@ -33,7 +33,7 @@
   "Lcdphone": { "path": "LCDPHONE.TTF", "type": "truetype" },
   "LIBRARY3AM": { "path": "LIBRARY3AM.OTF", "type": "opentype" },
   "NixieOne": { "path": "NIXIEONE.TTF", "type": "truetype" },
-  "PixelMillennium": { "path": "PIXEL_MILLENNIUM.TFF" },
+  "PixelMillennium": { "path": "PIXEL_MILLENNIUM.TTF", "type": "truetype" },
   "QuatreQuarts": { "path": "QUATREQUARTZ.OTF", "type": "opentype" },
   "RationalInteger": { "path": "RATIONALINT.TTF", "type": "truetype" },
   "TrajanPro-Regular": { "path": "ROMAN-TRAJAN-PRO.TTF", "type": "truetype" },

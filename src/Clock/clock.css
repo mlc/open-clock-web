@@ -1,0 +1,7 @@
+.clockwidget {
+  background-color: black;
+}
+
+.clockwidget text {
+  dominant-baseline: central;
+}
