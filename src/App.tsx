@@ -3,6 +3,7 @@ import parser, { ParseResult } from './parser';
 import Clock from './Clock';
 import { TimeProvider } from './TimeContext';
 import EntryArea from './EntryArea';
+import Fullscreenable from './Fullescreenable';
 import styles from './style.css';
 
 const getMessage = (r: ParseResult): string => {
@@ -19,7 +20,11 @@ const ClockOrError: React.FunctionComponent<{ parseResult: ParseResult }> = ({
   parseResult,
 }) => {
   if ('clock' in parseResult) {
-    return <Clock clock={parseResult.clock} />;
+    return (
+      <Fullscreenable>
+        <Clock clock={parseResult.clock} />
+      </Fullscreenable>
+    );
   } else {
     return <p className={styles.error}>{getMessage(parseResult)}</p>;
   }
