@@ -1,5 +1,6 @@
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
+import cssnano from 'cssnano';
 import emitEJS from 'rollup-plugin-emit-ejs';
 import json from '@rollup/plugin-json';
 import nodeResolve from '@rollup/plugin-node-resolve';
@@ -13,6 +14,10 @@ import postcssEnv from 'postcss-preset-env';
 const DEV = process.env.NODE_ENV === 'development';
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 const postCssPlugins = [postcssEnv];
+
+if (!DEV) {
+  postCssPlugins.push(cssnano({ preset: 'default' }));
+}
 
 const plugins = [
   replace({
