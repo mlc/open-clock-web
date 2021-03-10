@@ -19,7 +19,7 @@ const ClockOrError: React.FunctionComponent<{ parseResult: ParseResult }> = ({
   parseResult,
 }) => {
   if ('clock' in parseResult) {
-    return <Clock clock={parseResult.clock} height={400} />;
+    return <Clock clock={parseResult.clock} />;
   } else {
     return <p className={styles.error}>{getMessage(parseResult)}</p>;
   }

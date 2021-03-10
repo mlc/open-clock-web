@@ -11,8 +11,8 @@ interface Props {
 
 const Clock: React.FunctionComponent<Props> = ({
   clock,
-  ratio = 0.8,
-  height = 200,
+  ratio = 0.82,
+  height = 400,
 }) => {
   const width = ratio * height;
   const style = React.useMemo(

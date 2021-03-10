@@ -61,6 +61,7 @@ const Layer: React.FunctionComponent<Props> = ({
           r={2}
           stroke="red"
           strokeWidth={1}
+          fill="none"
           cx={position.x}
           cy={position.y}
         />
