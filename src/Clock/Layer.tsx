@@ -55,7 +55,7 @@ const Layer: React.FunctionComponent<Props> = ({
           position.y
         })`;
   return (
-    <g opacity={layer.alpha} transform={transform}>
+    <g opacity={layer.alpha} transform={transform} fill={layer.fillColor}>
       {debug && (
         <circle
           r={2}

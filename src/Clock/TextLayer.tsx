@@ -94,11 +94,11 @@ const textAnchors: {
 };
 
 const textTransforms: {
-  [K in Casing]: Property.TextTransform;
+  [K in Casing]: Property.TextTransform | undefined;
 } = {
   [Casing.Lower]: 'lowercase',
-  [Casing.None]: 'none',
-  [Casing.Sentence]: 'initial',
+  [Casing.None]: undefined,
+  [Casing.Sentence]: undefined, // not supported by CSS. ¯\_(ツ)_/¯
   [Casing.Uppercased]: 'uppercase',
   [Casing.Word]: 'capitalize',
 };
@@ -126,7 +126,6 @@ const TextLayer: React.FunctionComponent<LayerProps> = ({
   }
 
   const style: React.CSSProperties = {
-    fill: layer.fillColor,
     textTransform: textTransforms[layer.textOptions.casingType],
     fontFamily: layer.textOptions.fontFamily,
     fontSize: `${Number(layer.scale) * 46.5}px`,
