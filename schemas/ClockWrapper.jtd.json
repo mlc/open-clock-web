@@ -16,7 +16,7 @@
     "ClockStandard": {
       "properties": {
         "version": {
-          "type": "string",
+          "enum": ["1.0"],
           "metadata": {
             "description": "always 1.0",
             "typescriptType": "'1.0'"
