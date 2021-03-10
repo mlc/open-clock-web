@@ -1,8 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 // install freetype2-demos (or equivalent) before running
 
 const { exec } = require('child_process');
 const fs = require('fs').promises;
 const { join, basename, extname } = require('path');
+const prettier = require('prettier');
 
 const pattern = /postscript:\s+(.+)$/m;
 
@@ -53,11 +56,30 @@ const css = (data) => {
   return ['/* auto-generated, do not edit */', ...rules].join('\n');
 };
 
+const prettierrc = (async () => {
+  try {
+    const json = await fs.readFile(join(__dirname, '.prettierrc'), {
+      encoding: 'utf8',
+    });
+    return JSON.parse(json);
+  } catch {
+    return {};
+  }
+})();
+
+const write = (filename, data, parser) =>
+  prettierrc.then((rc) =>
+    fs.writeFile(
+      join('src', filename),
+      prettier.format(data, { ...rc, parser })
+    )
+  );
+
 extractFontNames()
   .then((data) =>
     Promise.all([
-      fs.writeFile('src/fonts.css', css(data)),
-      fs.writeFile('src/font-names.json', JSON.stringify(data)),
+      write('fonts.css', css(data), 'css'),
+      write('font-names.json', JSON.stringify(data), 'json'),
     ])
   )
   .catch(console.error);

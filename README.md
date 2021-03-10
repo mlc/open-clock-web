@@ -8,7 +8,7 @@ A web renderer for the [OpenClockStandard][].
 
 To get the dependencies:
 
-1. Install `node.js` and [yarn][] if you don't already have them.
+1. Install [`node.js`][node.js] and [yarn][] if you don't already have them.
 1. Clone the repo.
 1. do `yarn install`
 1. install [jtd-codegen][] if you will be modifying any schemas
@@ -25,6 +25,7 @@ Now, the following commands are available to you:
 Contact [mlc][].
 
 [openclockstandard]: https://github.com/orff/OpenClockStandard/
+[node.js]: https://nodejs.org/
 [yarn]: https://yarnpkg.com/
 [jtd-codegen]: https://jsontypedef.com/docs/jtd-codegen/#installing-jtd-codegen
 [mlc]: https://github.com/mlc/
