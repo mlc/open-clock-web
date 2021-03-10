@@ -2,12 +2,13 @@
 
 export interface ClockWrapper {
   clockStandard: ClockStandard;
-  images: ClockImage[];
+  assets?: ClockAsset[];
+  images?: any[];
 }
 
-export interface ClockImage {
+export interface ClockAsset {
   filename: string;
-  hasTransparency: 'true' | 'false';
+  hasTransparency: boolean;
   imageData: string;
 }
 
@@ -77,10 +78,48 @@ export interface ClockLayer {
   dataBarOptions?: any;
   dataLabelOptions?: any;
   dataRingOptions?: any;
-  handOptions?: any;
+  handOptions?: ClockLayerHandOptions;
   iconOptions?: any;
   textOptions?: ClockLayerTextOptions;
   weatherOptions?: any;
+}
+
+export interface ClockLayerHandOptions {
+  /**
+   * used usually in combination with images that have numbers to animate in
+   * reverse to show numbers increasing for time
+   */
+  animateClockwise: boolean;
+  handStyle: string;
+
+  /**
+   * localized text description of the hand style
+   */
+  handStyleDescription: string;
+  handType: ClockLayerHandTypes;
+
+  /**
+   * when using images the anchor position ( bottom / centered of the image )
+   * default: 0.5
+   */
+  imageAnchorX: string;
+
+  /**
+   * when using images the anchor position ( bottom / centered of the image )
+   * default: 0.5
+   */
+  imageAnchorY: string;
+
+  /**
+   * use images instead of vectors
+   */
+  useImage: boolean;
+}
+
+export enum ClockLayerHandTypes {
+  Hour = 'hour',
+  Minute = 'minute',
+  Second = 'second',
 }
 
 export enum ClockLayerTextCasing {

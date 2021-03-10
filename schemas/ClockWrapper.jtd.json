@@ -1,12 +1,9 @@
 {
   "definitions": {
-    "ClockImage": {
+    "ClockAsset": {
       "properties": {
         "hasTransparency": {
-          "type": "string",
-          "metadata": {
-            "typescriptType": "'true' | 'false'"
-          }
+          "type": "boolean"
         },
         "filename": {
           "type": "string"
@@ -102,7 +99,9 @@
         "iconOptions": {},
         "dataLabelOptions": {},
         "weatherOptions": {},
-        "handOptions": {},
+        "handOptions": {
+          "ref": "ClockLayerHandOptions"
+        },
         "dataBarOptions": {},
         "dataRingOptions": {}
       }
@@ -185,16 +184,52 @@
 
     "ClockLayerTextCasing": {
       "enum": ["none", "lower", "sentence", "uppercased", "word"]
+    },
+    "ClockLayerHandOptions": {
+      "properties": {
+        "handType": { "ref": "ClockLayerHandTypes" },
+        "handStyle": { "type": "string" },
+        "handStyleDescription": {
+          "type": "string",
+          "metadata": {
+            "description": "localized text description of the hand style"
+          }
+        },
+        "useImage": {
+          "type": "boolean",
+          "metadata": { "description": "use images instead of vectors" }
+        },
+        "animateClockwise": {
+          "type": "boolean",
+          "metadata": {
+            "description": "used usually in combination with images that have numbers to animate in reverse to show numbers increasing for time"
+          }
+        },
+        "imageAnchorX": {
+          "type": "string",
+          "metadata": {
+            "description": "when using images the anchor position ( bottom / centered of the image ) default: 0.5"
+          }
+        },
+        "imageAnchorY": {
+          "type": "string",
+          "metadata": {
+            "description": "when using images the anchor position ( bottom / centered of the image ) default: 0.5"
+          }
+        }
+      }
+    },
+    "ClockLayerHandTypes": {
+      "enum": ["second", "minute", "hour"]
     }
   },
   "properties": {
-    "clockStandard": {
-      "ref": "ClockStandard"
+    "clockStandard": { "ref": "ClockStandard" }
+  },
+  "optionalProperties": {
+    "assets": {
+      "elements": { "ref": "ClockAsset" }
     },
-    "images": {
-      "elements": {
-        "ref": "ClockImage"
-      }
-    }
+    "images": { "elements": {} }
   }
 }
