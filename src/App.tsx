@@ -3,7 +3,7 @@ import parser, { ParseResult } from './parser';
 import Clock from './Clock';
 import { TimeProvider } from './TimeContext';
 import EntryArea from './EntryArea';
-import Fullscreenable from './Fullescreenable';
+import Fullscreenable from './Fullscreenable';
 import styles from './style.css';
 
 const getMessage = (r: ParseResult): string => {
