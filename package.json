@@ -16,6 +16,7 @@
     "@js-joda/core": "^3.2.0",
     "@js-joda/locale_en-us": "^3.2.2",
     "ajv": "^7.1.1",
+    "number-to-words": "^1.2.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
@@ -31,6 +32,7 @@
     "@rollup/plugin-node-resolve": "^11.2.0",
     "@rollup/plugin-replace": "^2.4.1",
     "@types/css-font-loading-module": "^0.0.4",
+    "@types/number-to-words": "^1.2.0",
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
