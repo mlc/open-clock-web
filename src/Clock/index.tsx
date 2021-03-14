@@ -24,16 +24,22 @@ const Clock: React.FunctionComponent<Props> = ({
 
   const viewBox = `${-100 * ratio} -100 ${200 * ratio} 200`;
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      style={style}
-      className={styles.clockwidget}
-      viewBox={viewBox}
-    >
-      {clock.clockStandard.layers.map((layer) => (
-        <Layer assets={assets} ratio={ratio} layer={layer} key={layer.zIndex} />
-      ))}
-    </svg>
+    <div style={style}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={styles.clockwidget}
+        viewBox={viewBox}
+      >
+        {clock.clockStandard.layers.map((layer) => (
+          <Layer
+            assets={assets}
+            ratio={ratio}
+            layer={layer}
+            key={layer.zIndex}
+          />
+        ))}
+      </svg>
+    </div>
   );
 };
 
