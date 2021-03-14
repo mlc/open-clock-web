@@ -26,24 +26,25 @@ const getDimensions = (
 const clockAssetsToAssets = (clockAssets?: ClockAsset[]): Assets => {
   if (!clockAssets) {
     return {};
-  }
-  return Object.assign(
-    {},
-    ...clockAssets.map(
-      (asset): Assets => {
+  } else {
+    return Object.fromEntries(
+      clockAssets.flatMap((asset) => {
         const buf = decode(asset.imageData);
         const dimensions = getDimensions(buf);
         return dimensions
-          ? {
-              [asset.filename]: {
-                ...dimensions,
-                url: URL.createObjectURL(new Blob([buf])),
-              },
-            }
-          : {};
-      }
-    )
-  );
+          ? [
+              [
+                asset.filename,
+                {
+                  ...dimensions,
+                  url: URL.createObjectURL(new Blob([buf])),
+                },
+              ],
+            ]
+          : [];
+      })
+    );
+  }
 };
 
 export const useAssets = (clockAssets?: ClockAsset[]): Assets => {
