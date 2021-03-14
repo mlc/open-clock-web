@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { ClockLayer, ClockLayerType } from '../open-clock';
 import TextLayer from './TextLayer';
-import { LayerProps } from './LayerProps';
+import type { Assets, LayerProps } from './LayerProps';
 import HandLayer from './HandLayer';
+import ImageLayer from './ImageLayer';
 
 const layerTypes: {
   [K in ClockLayerType]: React.ComponentType<LayerProps> | undefined;
@@ -14,13 +15,14 @@ const layerTypes: {
   [ClockLayerType.DateTime]: TextLayer,
   [ClockLayerType.Hand]: HandLayer,
   [ClockLayerType.Icon]: undefined,
-  [ClockLayerType.Image]: undefined,
+  [ClockLayerType.Image]: ImageLayer,
   [ClockLayerType.Text]: TextLayer,
 };
 
 interface Props {
   ratio: number;
   layer: ClockLayer;
+  assets: Assets;
   debug?: boolean;
 }
 
@@ -32,6 +34,7 @@ const radiansToDegrees = (theta: string | number): number => {
 const Layer: React.FunctionComponent<Props> = ({
   ratio,
   layer,
+  assets,
   debug = false,
 }) => {
   const position = React.useMemo(
@@ -56,18 +59,17 @@ const Layer: React.FunctionComponent<Props> = ({
           position.y
         })`;
   return (
-    <g opacity={layer.alpha} transform={transform} fill={layer.fillColor}>
+    <g opacity={layer.alpha} transform={transform}>
       {debug && (
         <circle
           r={2}
           stroke="red"
           strokeWidth={1}
-          fill="none"
           cx={position.x}
           cy={position.y}
         />
       )}
-      <LayerType position={position} layer={layer} />
+      <LayerType assets={assets} position={position} layer={layer} />
     </g>
   );
 };

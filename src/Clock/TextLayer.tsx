@@ -58,7 +58,7 @@ const formatPatterns: {
   [Format.Dl]: p('EEEE'),
   [Format.Dw]: p('E'),
   [Format.Dy]: p('D'),
-  [Format.Hh]: p('h'),
+  [Format.Hh]: p('hh'),
   [Format.Hhmm]: p('h:mm'),
   [Format.Hhmmpm]: p('h:mm a'),
   [Format.Hhmmss]: p('h:mm:ss'),
@@ -130,6 +130,7 @@ const TextLayer: React.FunctionComponent<LayerProps> = ({
     fontFamily: layer.textOptions.fontFamily,
     fontSize: `${Number(layer.scale) * 46.5}px`,
     textAnchor: textAnchors[layer.textOptions.justification],
+    fill: layer.fillColor,
   };
 
   return (
