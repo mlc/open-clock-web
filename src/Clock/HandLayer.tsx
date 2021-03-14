@@ -2,7 +2,10 @@ import * as React from 'react';
 import { ChronoField, ZonedDateTime } from '@js-joda/core';
 import type { LayerProps } from './LayerProps';
 import { useTime } from '../TimeContext';
-import { ClockLayerHandTypes as HandType } from '../open-clock';
+import {
+  ClockLayerHandOptions as HandOptions,
+  ClockLayerHandTypes as HandType,
+} from '../open-clock';
 
 type AngleExtractor = (time: ZonedDateTime) => number;
 
@@ -19,10 +22,44 @@ const angleExtractors: { [K in HandType]: AngleExtractor } = {
   [HandType.Second]: seconds,
 };
 
+type HandProps = LayerProps & {
+  angle: number;
+  handOptions: HandOptions;
+};
+
+const ImageHand: React.FunctionComponent<HandProps> = ({
+  assets,
+  layer: { imageFilename, scale },
+  position: { x, y },
+  angle,
+  handOptions: { imageAnchorX, imageAnchorY },
+}) => {
+  const asset = assets[imageFilename];
+  if (!asset) {
+    return null;
+  }
+  const s = (Number(scale) * 200) / 275;
+  const width = asset.width * s;
+  const height = asset.height * s;
+  const cx = Number(imageAnchorX);
+  const cy = Number(imageAnchorY);
+  const transform = `rotate(${angle} ${x} ${y})`;
+  return (
+    <image
+      href={asset.url}
+      width={width}
+      height={height}
+      x={x - width * cx}
+      y={y - height * cy}
+      transform={transform}
+    />
+  );
+};
+
 const HandLayer: React.FunctionComponent<LayerProps> = ({
   assets,
   layer,
-  position: { x, y },
+  position,
 }) => {
   const now = useTime();
 
@@ -34,24 +71,13 @@ const HandLayer: React.FunctionComponent<LayerProps> = ({
   const fraction = angleExtractors[handOptions.handType](now);
   const angle = 360 * (handOptions.animateClockwise ? fraction : 1 - fraction);
   if (handOptions.useImage) {
-    const asset = assets[layer.imageFilename];
-    if (!asset) {
-      return null;
-    }
-    const s = (Number(layer.scale) * 200) / 275;
-    const width = asset.width * s;
-    const height = asset.height * s;
-    const cx = Number(handOptions.imageAnchorX);
-    const cy = Number(handOptions.imageAnchorY);
-    const transform = `rotate(${angle} ${x} ${y})`;
     return (
-      <image
-        href={asset.url}
-        width={width}
-        height={height}
-        x={x - width * cx}
-        y={y - height * cy}
-        transform={transform}
+      <ImageHand
+        layer={layer}
+        position={position}
+        assets={assets}
+        angle={angle}
+        handOptions={handOptions}
       />
     );
   } else {
