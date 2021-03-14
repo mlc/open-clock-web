@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ClockLayer, ClockLayerType } from '../open-clock';
 import TextLayer from './TextLayer';
 import { LayerProps } from './LayerProps';
+import HandLayer from './HandLayer';
 
 const layerTypes: {
   [K in ClockLayerType]: React.ComponentType<LayerProps> | undefined;
@@ -11,7 +12,7 @@ const layerTypes: {
   [ClockLayerType.DataLabel]: undefined,
   [ClockLayerType.DataRing]: undefined,
   [ClockLayerType.DateTime]: TextLayer,
-  [ClockLayerType.Hand]: undefined,
+  [ClockLayerType.Hand]: HandLayer,
   [ClockLayerType.Icon]: undefined,
   [ClockLayerType.Image]: undefined,
   [ClockLayerType.Text]: TextLayer,
