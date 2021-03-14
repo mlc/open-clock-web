@@ -6,13 +6,17 @@ import { ClockLayerHandTypes as HandType } from '../open-clock';
 
 type AngleExtractor = (time: ZonedDateTime) => number;
 
-const extract = (f: ChronoField, max: number): AngleExtractor => (time) =>
-  time.get(f) / max;
+const seconds: AngleExtractor = (time) =>
+  time.get(ChronoField.SECOND_OF_MINUTE) / 60;
+const minutes: AngleExtractor = (time) =>
+  (time.get(ChronoField.MINUTE_OF_HOUR) + seconds(time)) / 60;
+const hours: AngleExtractor = (time) =>
+  (time.get(ChronoField.HOUR_OF_AMPM) + minutes(time)) / 12;
 
 const angleExtractors: { [K in HandType]: AngleExtractor } = {
-  [HandType.Hour]: extract(ChronoField.HOUR_OF_AMPM, 12),
-  [HandType.Minute]: extract(ChronoField.MINUTE_OF_HOUR, 60),
-  [HandType.Second]: extract(ChronoField.SECOND_OF_MINUTE, 60),
+  [HandType.Hour]: hours,
+  [HandType.Minute]: minutes,
+  [HandType.Second]: seconds,
 };
 
 const HandLayer: React.FunctionComponent<LayerProps> = ({

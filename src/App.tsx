@@ -38,7 +38,7 @@ const App: React.FunctionComponent = () => {
     <TimeProvider>
       <div>
         <EntryArea json={json} setJson={setJson} />
-        <ClockOrError parseResult={parseResult} />
+        {json && <ClockOrError parseResult={parseResult} />}
       </div>
     </TimeProvider>
   );
