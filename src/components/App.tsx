@@ -5,7 +5,7 @@ import { TimeProvider } from '../TimeContext';
 import EntryArea from './EntryArea';
 import Fullscreenable from './Fullscreenable';
 import MultipleClocks from './MultipleClocks';
-import styles from './style.css';
+import './style.css';
 
 const getMessage = (rs: ParseResult[]): string[] =>
   rs.flatMap((r) => {
@@ -21,23 +21,24 @@ const getMessage = (rs: ParseResult[]): string[] =>
 const ClocksOrError: React.FunctionComponent<{
   parseResults: ParseResult[];
   height?: number;
-}> = ({ parseResults, height = 400 }) => {
+  ratio?: number;
+}> = ({ parseResults, height = 400, ratio = 0.82 }) => {
   const errors = getMessage(parseResults);
   if (errors.length > 0) {
-    return <p className={styles.error}>{errors.join(', ')}</p>;
+    return <p className="error">{errors.join(', ')}</p>;
   } else if (parseResults.length === 0) {
     return null;
   } else if (parseResults.length === 1 && 'clock' in parseResults[0]) {
     return (
       <Fullscreenable>
-        <Clock clock={parseResults[0].clock} height={height} />
+        <Clock clock={parseResults[0].clock} height={height} ratio={ratio} />
       </Fullscreenable>
     );
   } else {
     const clocks = (parseResults as ClockParseResult[]).map(
       ({ clock }) => clock
     );
-    return <MultipleClocks clocks={clocks} height={height} />;
+    return <MultipleClocks clocks={clocks} height={height} ratio={ratio} />;
   }
 };
 

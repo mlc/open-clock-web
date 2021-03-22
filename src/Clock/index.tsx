@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ClockWrapper } from '../open-clock';
-import styles from './clock.css';
+import './clock.css';
 import Layer from './Layer';
 import { useAssets } from './useAssets';
 
@@ -27,7 +27,7 @@ const Clock: React.FunctionComponent<Props> = ({
     <div style={style}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className={styles.clockwidget}
+        className="clockwidget"
         viewBox={viewBox}
       >
         {clock.clockStandard.layers.map((layer) => (

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styles from './style.css';
 
 interface Props {
   jsons?: string[];
@@ -23,11 +22,13 @@ const EntryArea: React.FunctionComponent<Props> = ({ setJsons }) => {
   );
 
   return (
-    <form id={styles.jsonForm}>
-      <label htmlFor={styles.jsonEntry}>Clock JSON</label>
-      <button type="button" onClick={onFileClick}>
-        open file
-      </button>
+    <form id="jsonForm">
+      <label>
+        {'Clock JSON: '}
+        <button type="button" onClick={onFileClick}>
+          open file
+        </button>
+      </label>
       <input
         ref={pickfileRef}
         id="pickfile"
@@ -35,7 +36,7 @@ const EntryArea: React.FunctionComponent<Props> = ({ setJsons }) => {
         accept=".ocs,.json,application/json"
         multiple
         onChange={onFileChange}
-        className={styles.hidden}
+        className="hidden"
       />
       <br />
     </form>
