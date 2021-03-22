@@ -7,13 +7,13 @@ import { useAssets } from './useAssets';
 interface Props {
   clock: ClockWrapper;
   ratio?: number;
-  height?: number;
+  height: number;
 }
 
 const Clock: React.FunctionComponent<Props> = ({
   clock,
   ratio = 0.82,
-  height = 400,
+  height,
 }) => {
   const width = ratio * height;
   const style = React.useMemo(

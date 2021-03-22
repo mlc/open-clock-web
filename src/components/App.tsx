@@ -1,9 +1,10 @@
 import * as React from 'react';
-import parser, { ParseResult } from './parser';
-import Clock from './Clock';
-import { TimeProvider } from './TimeContext';
+import parser, { ClockParseResult, ParseResult } from '../parser';
+import Clock from '../Clock';
+import { TimeProvider } from '../TimeContext';
 import EntryArea from './EntryArea';
 import Fullscreenable from './Fullscreenable';
+import MultipleClocks from './MultipleClocks';
 import styles from './style.css';
 
 const getMessage = (rs: ParseResult[]): string[] =>
@@ -17,20 +18,26 @@ const getMessage = (rs: ParseResult[]): string[] =>
     }
   });
 
-const ClockOrError: React.FunctionComponent<{
+const ClocksOrError: React.FunctionComponent<{
   parseResults: ParseResult[];
-}> = ({ parseResults }) => {
+  height?: number;
+}> = ({ parseResults, height = 400 }) => {
   const errors = getMessage(parseResults);
   if (errors.length > 0) {
     return <p className={styles.error}>{errors.join(', ')}</p>;
-  } else {
+  } else if (parseResults.length === 0) {
+    return null;
+  } else if (parseResults.length === 1 && 'clock' in parseResults[0]) {
     return (
       <Fullscreenable>
-        {parseResults.map((parseResult) =>
-          'clock' in parseResult ? <Clock clock={parseResult.clock} /> : null
-        )}
+        <Clock clock={parseResults[0].clock} height={height} />
       </Fullscreenable>
     );
+  } else {
+    const clocks = (parseResults as ClockParseResult[]).map(
+      ({ clock }) => clock
+    );
+    return <MultipleClocks clocks={clocks} height={height} />;
   }
 };
 
@@ -42,7 +49,7 @@ const App: React.FunctionComponent = () => {
     <TimeProvider>
       <div>
         <EntryArea jsons={jsons} setJsons={setJsons} />
-        {jsons && <ClockOrError parseResults={parseResults} />}
+        <ClocksOrError parseResults={parseResults} />
       </div>
     </TimeProvider>
   );
