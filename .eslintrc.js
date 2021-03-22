@@ -11,5 +11,7 @@ module.exports = {
     'react/prop-types': 'off',
     'jsx-a11y/label-has-associated-control': 'off', // seems to be buggy?
     'import/prefer-default-export': 'off',
+    'react/jsx-uses-react': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
 };
