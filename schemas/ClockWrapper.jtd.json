@@ -111,6 +111,35 @@
         "casingType": { "ref": "ClockLayerTextCasing" },
         "fontFilename": { "type": "string" },
         "fontDescription": { "type": "string" },
+        "dateTimeFormatDescription": { "type": "string" },
+        "customText": {
+          "type": "string",
+          "metadata": {
+            "description": "designer entered text to show in label"
+          }
+        },
+        "justification": { "ref": "ClockLayerTextJustification" },
+        "effectType": {
+          "type": "string",
+          "metadata": {
+            "description": "will be specific to platforms, might want to ignore"
+          }
+        },
+        "outlineWidth": {
+          "type": "string",
+          "metadata": { "description": "pixels to show as outline on the text" }
+        },
+        "outlineColor": {
+          "type": "string",
+          "metadata": { "description": "color for outline" }
+        },
+        "kerning": {
+          "type": "string",
+          "metadata": { "description": "added as adv option, probably ignore" }
+        }
+      },
+      "optionalProperties": {
+        "fontFamily": { "type": "string" },
         "dateTimeFormat": {
           "enum": [
             "HHMMSS",
@@ -146,36 +175,7 @@
             "MinuteWordUnit",
             "SecondsWordUnit"
           ]
-        },
-        "dateTimeFormatDescription": { "type": "string" },
-        "customText": {
-          "type": "string",
-          "metadata": {
-            "description": "designer entered text to show in label"
-          }
-        },
-        "justification": { "ref": "ClockLayerTextJustification" },
-        "effectType": {
-          "type": "string",
-          "metadata": {
-            "description": "will be specific to platforms, might want to ignore"
-          }
-        },
-        "outlineWidth": {
-          "type": "string",
-          "metadata": { "description": "pixels to show as outline on the text" }
-        },
-        "outlineColor": {
-          "type": "string",
-          "metadata": { "description": "color for outline" }
-        },
-        "kerning": {
-          "type": "string",
-          "metadata": { "description": "added as adv option, probably ignore" }
         }
-      },
-      "optionalProperties": {
-        "fontFamily": { "type": "string" }
       }
     },
     "ClockLayerTextJustification": {

@@ -1188,7 +1188,7 @@ ajv@^6.10.0, ajv@^6.12.4:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-ajv@^7.0.2, ajv@^7.2.3:
+ajv@^7.0.2:
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-7.2.3.tgz#ca78d1cf458d7d36d1c3fa0794dd143406db5772"
   integrity sha512-idv5WZvKVXDqKralOImQgPM9v6WOdLNa0IY3B3doOjw/YxRGT8I+allIJ6kd7Uaj+SF1xZUSU+nPM5aDNBVtnw==
@@ -3042,6 +3042,11 @@ jsonfile@^4.0.0:
   dependencies:
     array-includes "^3.1.2"
     object.assign "^4.1.2"
+
+jtd@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/jtd/-/jtd-0.1.1.tgz#ee8449f464bb096a90f34afabec3c0b8c33fa976"
+  integrity sha512-D1unKfAE0A/sVLqJZs8mCSW812w651GJuV94WcXRAbx0Xv2j2yjW8qeO5pugXbTMX4k2/ojIH8kQ06LGj9QcaA==
 
 language-subtag-registry@~0.3.2:
   version "0.3.21"

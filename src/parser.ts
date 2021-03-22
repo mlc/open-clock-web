@@ -1,23 +1,20 @@
-import Ajv, { ErrorObject } from 'ajv/dist/jtd';
-
+import { validate, Schema, ValidationError } from 'jtd';
 import { ClockWrapper } from './open-clock';
 import schema from '../schemas/ClockWrapper.jtd.json';
 
-const ajv = new Ajv({ strict: false });
-const validate = ajv.compile<ClockWrapper>(schema);
-
 export type ParseResult =
   | { clock: ClockWrapper }
-  | { errors: readonly ErrorObject[] }
+  | { errors: readonly ValidationError[] }
   | { exception: string };
 
 const parser = (json: string): ParseResult => {
   try {
     const clock = JSON.parse(json);
-    if (validate(clock)) {
+    const errors = validate(schema as Schema, clock);
+    if (errors.length === 0) {
       return { clock };
     } else {
-      return { errors: validate.errors ?? [] };
+      return { errors };
     }
   } catch (e) {
     return { exception: e.message };
