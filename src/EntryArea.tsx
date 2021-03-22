@@ -2,38 +2,29 @@ import * as React from 'react';
 import styles from './style.css';
 
 interface Props {
-  showEntry?: boolean;
-  json?: string;
-  setJson: (json: string) => void;
+  jsons?: string[];
+  setJsons: (json: string[]) => void;
 }
 
-const EntryArea: React.FunctionComponent<Props> = ({
-  showEntry = false,
-  json = '',
-  setJson,
-}) => {
-  const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = React.useCallback(
-    ({ target: { value } }) => setJson(value),
-    [setJson]
-  );
+const EntryArea: React.FunctionComponent<Props> = ({ setJsons }) => {
   const pickfileRef = React.useRef<HTMLInputElement>(null);
   const onFileClick = React.useCallback(() => {
     pickfileRef.current?.click();
   }, [pickfileRef]);
   const onFileChange: React.ChangeEventHandler<HTMLInputElement> = React.useCallback(
     ({ target: { files } }) => {
-      if (files && files[0]) {
-        const file = files[0];
-        file.text().then((text) => setJson(text));
+      if (files && files.length > 0) {
+        Promise.all(
+          Array.prototype.map.call(files, (file) => file.text())
+        ).then((jsons) => setJsons(jsons as string[]));
       }
     },
-    [setJson]
+    [setJsons]
   );
 
   return (
     <form id={styles.jsonForm}>
       <label htmlFor={styles.jsonEntry}>Clock JSON</label>
-      {showEntry ? ': enter in textarea or ' : ': '}
       <button type="button" onClick={onFileClick}>
         open file
       </button>
@@ -42,13 +33,11 @@ const EntryArea: React.FunctionComponent<Props> = ({
         id="pickfile"
         type="file"
         accept=".ocs,.json,application/json"
+        multiple
         onChange={onFileChange}
         className={styles.hidden}
       />
       <br />
-      {showEntry && (
-        <textarea onChange={onChange} id={styles.jsonEntry} value={json} />
-      )}
     </form>
   );
 };

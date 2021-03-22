@@ -2,8 +2,12 @@ import { validate, Schema, ValidationError } from 'jtd';
 import { ClockWrapper } from './open-clock';
 import schema from '../schemas/ClockWrapper.jtd.json';
 
+export interface ClockParseResult {
+  clock: ClockWrapper;
+}
+
 export type ParseResult =
-  | { clock: ClockWrapper }
+  | ClockParseResult
   | { errors: readonly ValidationError[] }
   | { exception: string };
 
