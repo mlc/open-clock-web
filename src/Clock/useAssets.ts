@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { decode } from 'base64-arraybuffer';
 import { ClockAsset } from '../open-clock';
-import type { Asset, Assets } from './LayerProps';
-import { readJpegHeader } from '../images/jpeg';
-import { readPngHeader } from '../images/png';
+import type { Assets } from './LayerProps';
+import { JpegData, readJpegHeader } from '../images/jpeg';
+import { PngData, readPngHeader } from '../images/png';
 
 const getDimensions = (
   imageData: ArrayBuffer
-): Pick<Asset, 'width' | 'height'> | undefined => {
+): JpegData | PngData | undefined => {
   const arr = new Uint8Array(imageData);
 
   const jpeg = readJpegHeader(arr);
@@ -31,17 +31,19 @@ const clockAssetsToAssets = (clockAssets?: ClockAsset[]): Assets => {
       clockAssets.flatMap((asset) => {
         const buf = decode(asset.imageData);
         const dimensions = getDimensions(buf);
-        return dimensions
-          ? [
-              [
-                asset.filename,
-                {
-                  ...dimensions,
-                  url: URL.createObjectURL(new Blob([buf])),
-                },
-              ],
-            ]
-          : [];
+        if (dimensions) {
+          return [
+            [
+              asset.filename,
+              {
+                ...dimensions,
+                url: URL.createObjectURL(new Blob([buf])),
+              },
+            ],
+          ];
+        } else {
+          return [];
+        }
       })
     );
   }

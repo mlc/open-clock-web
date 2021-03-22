@@ -2,13 +2,11 @@ import * as React from 'react';
 
 const Fullscreenable: React.FunctionComponent = ({ children }) => {
   const ref = React.useRef<HTMLDivElement>(null);
-  const enter = React.useCallback(
-    () =>
-      ref.current?.firstElementChild?.requestFullscreen({
-        navigationUI: 'show',
-      }),
-    [ref]
-  );
+  const enter = React.useCallback(() => {
+    ref.current?.firstElementChild?.requestFullscreen({
+      navigationUI: 'show',
+    });
+  }, [ref]);
 
   return (
     <>

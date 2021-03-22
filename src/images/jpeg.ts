@@ -2,7 +2,7 @@
 // Author: Thomas Lochmatter, thomas.lochmatter@viereck.ch
 // License: MIT
 
-interface JpegData {
+export interface JpegData {
   progressive: boolean;
   bitDepth: number;
   height: number;

@@ -7,7 +7,7 @@ export const useTime = () => React.useContext(TimeContext);
 export const TimeConsumer = TimeContext.Consumer;
 
 export const TimeProvider: React.FunctionComponent = ({ children }) => {
-  const [now, setNow] = React.useState(ZonedDateTime.now());
+  const [now, setNow] = React.useState(() => ZonedDateTime.now());
   React.useEffect(() => {
     // TODO: synchronize so that the first update occurs at 0ms after a new second
     const intervalId = setInterval(() => {

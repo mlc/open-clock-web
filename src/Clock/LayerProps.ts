@@ -6,7 +6,7 @@ export interface Asset {
   height: number;
 }
 
-export type Assets = { [key: string]: Asset };
+export type Assets = Readonly<Record<string, Readonly<Asset>>>;
 
 export interface LayerProps {
   layer: ClockLayer;

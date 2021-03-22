@@ -1,7 +1,7 @@
 // Author: Thomas Lochmatter, thomas.lochmatter@viereck.ch
 // License: MIT
 
-interface PngData {
+export interface PngData {
   width: number;
   height: number;
   bitDepth: number;
