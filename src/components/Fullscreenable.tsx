@@ -1,8 +1,8 @@
-import * as React from 'react';
+import { FunctionComponent, useCallback, useRef } from 'react';
 
-const Fullscreenable: React.FunctionComponent = ({ children }) => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const enter = React.useCallback(() => {
+const Fullscreenable: FunctionComponent = ({ children }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const enter = useCallback(() => {
     ref.current?.firstElementChild?.requestFullscreen({
       navigationUI: 'show',
     });

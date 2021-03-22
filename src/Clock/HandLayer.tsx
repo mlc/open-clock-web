@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type { FunctionComponent } from 'react';
 import { ChronoField, ZonedDateTime } from '@js-joda/core';
 import type { LayerProps } from './LayerProps';
 import { useTime } from '../TimeContext';
@@ -27,7 +27,7 @@ type HandProps = LayerProps & {
   handOptions: HandOptions;
 };
 
-const ImageHand: React.FunctionComponent<HandProps> = ({
+const ImageHand: FunctionComponent<HandProps> = ({
   assets,
   layer: { imageFilename, scale },
   position: { x, y },
@@ -56,7 +56,7 @@ const ImageHand: React.FunctionComponent<HandProps> = ({
   );
 };
 
-const HandLayer: React.FunctionComponent<LayerProps> = ({
+const HandLayer: FunctionComponent<LayerProps> = ({
   assets,
   layer,
   position,

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { decode } from 'base64-arraybuffer';
 import { ClockAsset } from '../open-clock';
 import type { Assets } from './LayerProps';
@@ -50,9 +50,9 @@ const clockAssetsToAssets = (clockAssets?: ClockAsset[]): Assets => {
 };
 
 export const useAssets = (clockAssets?: ClockAsset[]): Assets => {
-  const [assets, setAssets] = React.useState<Assets>({});
+  const [assets, setAssets] = useState<Assets>({});
 
-  React.useEffect(() => {
+  useEffect(() => {
     const a = clockAssetsToAssets(clockAssets);
     setAssets(a);
     return () => {

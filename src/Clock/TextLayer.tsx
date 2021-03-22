@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { CSSProperties, FunctionComponent, memo } from 'react';
 import type { Property } from 'csstype';
 import {
   ChronoField,
@@ -103,7 +103,7 @@ const textTransforms: {
   [Casing.Word]: 'capitalize',
 };
 
-const DateTimeText: React.FunctionComponent<DateTimeTextProps> = ({
+const DateTimeText: FunctionComponent<DateTimeTextProps> = ({
   dateTimeFormat,
 }) => {
   const now = useTime();
@@ -120,7 +120,7 @@ const DateTimeText: React.FunctionComponent<DateTimeTextProps> = ({
   }
 };
 
-const TextLayer: React.FunctionComponent<LayerProps> = ({
+const TextLayer: FunctionComponent<LayerProps> = ({
   position: { x, y },
   layer,
 }) => {
@@ -128,7 +128,7 @@ const TextLayer: React.FunctionComponent<LayerProps> = ({
     return null;
   }
 
-  const style: React.CSSProperties = {
+  const style: CSSProperties = {
     textTransform: textTransforms[layer.textOptions.casingType],
     fontFamily: layer.textOptions.fontFamily,
     fontSize: `${Number(layer.scale) * 46.5}px`,
@@ -147,4 +147,4 @@ const TextLayer: React.FunctionComponent<LayerProps> = ({
   );
 };
 
-export default React.memo(TextLayer);
+export default memo(TextLayer);

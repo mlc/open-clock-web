@@ -1,16 +1,21 @@
-import * as React from 'react';
+import {
+  ChangeEventHandler,
+  FunctionComponent,
+  useCallback,
+  useRef,
+} from 'react';
 
 interface Props {
   jsons?: string[];
   setJsons: (json: string[]) => void;
 }
 
-const EntryArea: React.FunctionComponent<Props> = ({ setJsons }) => {
-  const pickfileRef = React.useRef<HTMLInputElement>(null);
-  const onFileClick = React.useCallback(() => {
+const EntryArea: FunctionComponent<Props> = ({ setJsons }) => {
+  const pickfileRef = useRef<HTMLInputElement>(null);
+  const onFileClick = useCallback(() => {
     pickfileRef.current?.click();
   }, [pickfileRef]);
-  const onFileChange: React.ChangeEventHandler<HTMLInputElement> = React.useCallback(
+  const onFileChange: ChangeEventHandler<HTMLInputElement> = useCallback(
     ({ target: { files } }) => {
       if (files && files.length > 0) {
         Promise.all(

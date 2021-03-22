@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type { FunctionComponent } from 'react';
 import type { LayerProps } from './LayerProps';
 
-const ImageLayer: React.FunctionComponent<LayerProps> = ({
+const ImageLayer: FunctionComponent<LayerProps> = ({
   layer: { imageFilename, scale },
   assets,
   position: { x, y },

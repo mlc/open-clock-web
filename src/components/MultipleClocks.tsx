@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FunctionComponent, useMemo } from 'react';
 import {
   CarouselProvider,
   Slider,
@@ -18,12 +18,12 @@ interface Props {
   ratio: number;
 }
 
-const MultipleClocks: React.FunctionComponent<Props> = ({
+const MultipleClocks: FunctionComponent<Props> = ({
   clocks,
   height,
   ratio,
 }) => {
-  const style = React.useMemo(
+  const style = useMemo(
     () => ({
       height,
       width: height * ratio,

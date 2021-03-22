@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FunctionComponent, useMemo, useState } from 'react';
 import parser, { ClockParseResult, ParseResult } from '../parser';
 import Clock from '../Clock';
 import { TimeProvider } from '../TimeContext';
@@ -18,7 +18,7 @@ const getMessage = (rs: ParseResult[]): string[] =>
     }
   });
 
-const ClocksOrError: React.FunctionComponent<{
+const ClocksOrError: FunctionComponent<{
   parseResults: ParseResult[];
   height?: number;
   ratio?: number;
@@ -42,9 +42,9 @@ const ClocksOrError: React.FunctionComponent<{
   }
 };
 
-const App: React.FunctionComponent = () => {
-  const [jsons, setJsons] = React.useState<string[]>([]);
-  const parseResults = React.useMemo(() => jsons.map(parser), [jsons]);
+const App: FunctionComponent = () => {
+  const [jsons, setJsons] = useState<string[]>([]);
+  const parseResults = useMemo(() => jsons.map(parser), [jsons]);
 
   return (
     <TimeProvider>

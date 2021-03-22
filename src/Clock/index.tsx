@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import * as React from 'react';
+import { FunctionComponent, HTMLAttributes, useMemo } from 'react';
 import { ClockWrapper } from '../open-clock';
 import './clock.css';
 import Layer from './Layer';
@@ -12,24 +12,24 @@ interface Props {
   wrapper?: boolean;
 }
 
-interface MaybeWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
+interface MaybeWrapperProps extends HTMLAttributes<HTMLDivElement> {
   render: boolean;
 }
 
-const MaybeWrapper: React.FunctionComponent<MaybeWrapperProps> = ({
+const MaybeWrapper: FunctionComponent<MaybeWrapperProps> = ({
   render,
   children,
   ...rest
 }) => (render ? <div {...rest}>{children}</div> : <>{children}</>);
 
-const Clock: React.FunctionComponent<Props> = ({
+const Clock: FunctionComponent<Props> = ({
   clock,
   ratio = 0.82,
   height,
   wrapper = true,
 }) => {
   const width = ratio * height;
-  const style = React.useMemo(
+  const style = useMemo(
     () => ({ width: `${width}px`, height: `${height}px` }),
     [ratio, height]
   );

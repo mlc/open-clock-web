@@ -1,13 +1,14 @@
-import * as React from 'react';
+import { ComponentType, FunctionComponent, useMemo } from 'react';
 import { ClockLayer, ClockLayerType } from '../open-clock';
 import TextLayer from './TextLayer';
 import type { Assets, LayerProps } from './LayerProps';
 import HandLayer from './HandLayer';
 import ImageLayer from './ImageLayer';
 
-const layerTypes: {
-  [K in ClockLayerType]: React.ComponentType<LayerProps> | undefined;
-} = {
+const layerTypes: Record<
+  ClockLayerType,
+  ComponentType<LayerProps> | undefined
+> = {
   [ClockLayerType.BatteryIndicator]: undefined,
   [ClockLayerType.DataBar]: undefined,
   [ClockLayerType.DataLabel]: undefined,
@@ -31,13 +32,13 @@ const radiansToDegrees = (theta: string | number): number => {
   return (rads * 180) / Math.PI;
 };
 
-const Layer: React.FunctionComponent<Props> = ({
+const Layer: FunctionComponent<Props> = ({
   ratio,
   layer,
   assets,
   debug = false,
 }) => {
-  const position = React.useMemo(
+  const position = useMemo(
     () => ({
       x: Number(layer.horizontalPosition) * 100,
       y: Number(layer.verticalPosition) * -100,
