@@ -39,7 +39,7 @@ const Layer: React.FunctionComponent<Props> = ({
 }) => {
   const position = React.useMemo(
     () => ({
-      x: Number(layer.horizontalPosition) * 100 * ratio,
+      x: Number(layer.horizontalPosition) * 100,
       y: Number(layer.verticalPosition) * -100,
     }),
     [ratio, layer.horizontalPosition, layer.verticalPosition]
