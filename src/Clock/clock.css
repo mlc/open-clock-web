@@ -7,3 +7,9 @@
 .clockwidget text {
   dominant-baseline: central;
 }
+
+@media all and (display-mode: fullscreen) {
+  .clockwidget {
+    height: 100vh;
+  }
+}

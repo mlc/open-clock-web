@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import * as React from 'react';
 import { ClockWrapper } from '../open-clock';
 import './clock.css';
@@ -8,12 +9,24 @@ interface Props {
   clock: ClockWrapper;
   ratio?: number;
   height: number;
+  wrapper?: boolean;
 }
+
+interface MaybeWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
+  render: boolean;
+}
+
+const MaybeWrapper: React.FunctionComponent<MaybeWrapperProps> = ({
+  render,
+  children,
+  ...rest
+}) => (render ? <div {...rest}>{children}</div> : <>{children}</>);
 
 const Clock: React.FunctionComponent<Props> = ({
   clock,
   ratio = 0.82,
   height,
+  wrapper = true,
 }) => {
   const width = ratio * height;
   const style = React.useMemo(
@@ -24,11 +37,12 @@ const Clock: React.FunctionComponent<Props> = ({
 
   const viewBox = `${-100 * ratio} -100 ${200 * ratio} 200`;
   return (
-    <div style={style}>
+    <MaybeWrapper render={wrapper} style={style}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="clockwidget"
         viewBox={viewBox}
+        preserveAspectRatio="xMidYMid meet"
       >
         {clock.clockStandard.layers.map((layer) => (
           <Layer
@@ -39,7 +53,7 @@ const Clock: React.FunctionComponent<Props> = ({
           />
         ))}
       </svg>
-    </div>
+    </MaybeWrapper>
   );
 };
 

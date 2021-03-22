@@ -42,7 +42,12 @@ const MultipleClocks: React.FunctionComponent<Props> = ({
         <Slider style={style}>
           {clocks.map((clock, index) => (
             <Slide index={index} key={clock.clockStandard.title}>
-              <Clock clock={clock} height={height} ratio={ratio} />
+              <Clock
+                clock={clock}
+                height={height}
+                ratio={ratio}
+                wrapper={false}
+              />
             </Slide>
           ))}
         </Slider>
