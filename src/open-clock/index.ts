@@ -178,7 +178,6 @@ export interface ClockLayerTextOptions {
    * designer entered text to show in label
    */
   customText: string;
-  dateTimeFormatDescription: string;
 
   /**
    * will be specific to platforms, might want to ignore
@@ -203,6 +202,7 @@ export interface ClockLayerTextOptions {
    */
   outlineWidth: string;
   dateTimeFormat?: ClockLayerTextOptionsDateTimeFormat;
+  dateTimeFormatDescription?: string;
   fontFamily?: string;
 }
 

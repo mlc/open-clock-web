@@ -111,7 +111,6 @@
         "casingType": { "ref": "ClockLayerTextCasing" },
         "fontFilename": { "type": "string" },
         "fontDescription": { "type": "string" },
-        "dateTimeFormatDescription": { "type": "string" },
         "customText": {
           "type": "string",
           "metadata": {
@@ -175,7 +174,8 @@
             "MinuteWordUnit",
             "SecondsWordUnit"
           ]
-        }
+        },
+        "dateTimeFormatDescription": { "type": "string" }
       }
     },
     "ClockLayerTextJustification": {

@@ -20,7 +20,7 @@ import {
 } from '../open-clock';
 
 interface DateTimeTextProps {
-  dateTimeFormat: Format;
+  dateTimeFormat?: Format;
 }
 
 type FormatFunction = (time: ZonedDateTime) => string;
@@ -107,6 +107,9 @@ const DateTimeText: React.FunctionComponent<DateTimeTextProps> = ({
   dateTimeFormat,
 }) => {
   const now = useTime();
+  if (!dateTimeFormat) {
+    return null;
+  }
   const pattern = formatPatterns[dateTimeFormat];
   if (pattern === undefined) {
     return null;
