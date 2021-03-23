@@ -83,6 +83,7 @@ const formatPatterns: {
   [Format.Wy]: p('w'),
   [Format.Yy]: p('yy'),
   [Format.Yyyy]: p('yyyy'),
+  [Format.DataLabel]: undefined,
 };
 
 const textAnchors: {

@@ -172,7 +172,8 @@
             "SecondsWord",
             "HourWordUnit",
             "MinuteWordUnit",
-            "SecondsWordUnit"
+            "SecondsWordUnit",
+            "dataLabel"
           ]
         },
         "dateTimeFormatDescription": { "type": "string" }

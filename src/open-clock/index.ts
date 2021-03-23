@@ -169,6 +169,7 @@ export enum ClockLayerTextOptionsDateTimeFormat {
   Wy = 'WY',
   Yy = 'YY',
   Yyyy = 'YYYY',
+  DataLabel = 'dataLabel',
 }
 
 export interface ClockLayerTextOptions {
