@@ -1,8 +1,8 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import { FunctionComponent, HTMLAttributes, useMemo } from 'react';
+import { FunctionComponent, useMemo } from 'react';
 import { ClockWrapper } from '../open-clock';
 import './clock.css';
 import Layer from './Layer';
+import MaybeWrapper from './MaybeWrapper';
 import { useAssets } from './useAssets';
 
 interface Props {
@@ -11,16 +11,6 @@ interface Props {
   height: number;
   wrapper?: boolean;
 }
-
-interface MaybeWrapperProps extends HTMLAttributes<HTMLDivElement> {
-  render: boolean;
-}
-
-const MaybeWrapper: FunctionComponent<MaybeWrapperProps> = ({
-  render,
-  children,
-  ...rest
-}) => (render ? <div {...rest}>{children}</div> : <>{children}</>);
 
 const Clock: FunctionComponent<Props> = ({
   clock,
