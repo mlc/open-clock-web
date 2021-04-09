@@ -1,4 +1,4 @@
-import { ClockLayer } from '../open-clock';
+import type { ClockLayer } from '../open-clock';
 
 export interface Asset {
   url: string;
