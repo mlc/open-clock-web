@@ -1,4 +1,4 @@
-import type { FunctionComponent } from 'react';
+import { FunctionComponent, useRef, useEffect } from 'react';
 import { ChronoField, ZonedDateTime } from '@js-joda/core';
 import type { LayerProps } from './LayerProps';
 import { useTime } from '../TimeContext';
@@ -25,6 +25,7 @@ const angleExtractors: { [K in HandType]: AngleExtractor } = {
 type HandProps = LayerProps & {
   angle: number;
   handOptions: HandOptions;
+  animationType: string;
 };
 
 const ImageHand: FunctionComponent<HandProps> = ({
@@ -33,7 +34,27 @@ const ImageHand: FunctionComponent<HandProps> = ({
   position: { x, y },
   angle,
   handOptions: { imageAnchorX, imageAnchorY },
+  animationType,
 }) => {
+  const ref = useRef<SVGImageElement | null>(null);
+  useEffect(() => {
+    if (animationType === 'smooth') {
+      const anim = ref.current?.animate(
+        [
+          { transform: `rotate(${angle}deg)` },
+          { transform: `rotate(${angle + 6}deg)` },
+        ],
+        {
+          duration: 1000,
+          iterations: 1,
+        }
+      );
+      return () => anim?.cancel();
+    } else {
+      return undefined;
+    }
+  }, [ref, angle, x, y, animationType]);
+
   const asset = assets[imageFilename];
   if (!asset) {
     return null;
@@ -46,6 +67,7 @@ const ImageHand: FunctionComponent<HandProps> = ({
   const transform = `rotate(${angle} ${x} ${y})`;
   return (
     <image
+      ref={ref}
       href={asset.url}
       width={width}
       height={height}
@@ -78,6 +100,9 @@ const HandLayer: FunctionComponent<LayerProps> = ({
         assets={assets}
         angle={angle}
         handOptions={handOptions}
+        animationType={
+          handOptions.handType === HandType.Second ? 'smooth' : 'set'
+        }
       />
     );
   } else {
